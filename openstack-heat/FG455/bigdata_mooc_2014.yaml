@@ -1,6 +1,6 @@
-heat_template_version: 2013-05-23
+heat_template_version: 2014-09-28
 
-description: Deploy big data MOOC IPython notebook I590
+description: Deploy big data MOOC Cloudmesh with IPython notebook I590
 
 parameters:
   KeyName:
@@ -74,11 +74,13 @@ resources:
             fab user.mongo:cloudmesh
             fab mongo.simple
             fab india.configure
+            git pull
+            fab build.fast
             fab server.start
             EOL
 
             chmod 555 /tmp/activate-after-vm-creation.sh
-            sudo -u ubuntu --login /tmp/activate-after-vm-creation.sh &> /tmp/haha
+            sudo -u ubuntu --login /tmp/activate-after-vm-creation.sh &>> /tmp/FG455.log
 
             cd /home/ubuntu/
             git clone https://github.com/cloudmesh/introduction_to_cloud_computing.git
